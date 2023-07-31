@@ -1,0 +1,8 @@
+
+State Machine - |exercise4|c_s
+Name c_s.011 c_s.010 c_s.001 c_s.IDLE c_s.100 
+c_s.IDLE 0 0 0 0 0 
+c_s.001 0 0 1 1 0 
+c_s.010 0 1 0 1 0 
+c_s.011 1 0 0 1 0 
+c_s.100 0 0 0 1 1 

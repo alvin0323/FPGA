@@ -1,0 +1,7 @@
+|exercise7
+in => ~NO_FANOUT~
+out[0] <= <GND>
+out[1] <= <GND>
+out[2] <= <GND>
+
+

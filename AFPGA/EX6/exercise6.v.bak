@@ -1,0 +1,236 @@
+module exercise6(KEY,LEDR,HEX0,HEX1,HEX2,HEX3,HEX4,HEX5);
+    input KEY[2:0];
+    output LEDR[7:0];
+    output [6:0]HEX0,HEX1,HEX2,HEX3,HEX4,HEX5;
+    reg [4:0] counter;
+    wire[7:0] DIN;
+    wire[7:0]R0,R1;
+    wire[3:0]D1,D0,A1,A0,B1,B0;
+    wire Resetn,MCLOCK,PCLOCK;
+    assign Resetn = KEY[0];
+    assign MCLOCK = KEY[1];
+    assign PCLOCK = KEY[2];
+    always @(posedge MCLOCK)//counter block
+    begin
+        if(Resetn)
+            counter <= 0;
+        else
+            counter <= counter;
+    end
+    rom1(.address(counter),.clock(MCLOCK),.q(DIN));
+    proc(.DIN(DIN),.Resetn(Resetn),.Clock(PCLOCK),.R0(R0),.R1(R1));
+    assign D2 = DIN/16;
+    assign D1 = DIN%16;
+    assign A2 = R0/16;
+    assign A1 = R0%16;
+    assign B2 = R1/16;
+    assign B1 = R2%16;
+    seven(D2,HEX5);
+    seven(D1,HEX4);
+    seven(A2,HEX3);
+    seven(A1,HEX2);
+    seven(B2,HEX1);
+    seven(B1,HEX0);
+endmodule
+
+module seven(in,out);
+input [3:0]in;
+output [6:0]out;
+assign out[0] = (in==4'd1 | in==4'd4 | in==4'd11 | in==4'd13)?1:0;
+assign out[1] = (in==4'd5 | in==4'd6 | in==4'd11 | in==4'd12 | in==4'd14 | in==4'd15)?1:0;
+assign out[2] = (in==4'd2 | in==4'd12 | in==4'd14 | in==4'd15)?1:0;
+assign out[3] = (in==4'd1 | in==4'd4 | in==4'd7 | in==4'd9 | in==4'd10 | in==4'd15)?1:0;
+assign out[4] = (in==4'd0 | in==4'd2 | in==4'd6 | in==4'd8 | in==4'd10 | in==4'd11 | in==4'd12 | in==4'd13 | in==4'd14 | in==4'd15)?0:1;
+assign out[5] = (in==4'd1 | in==4'd2 | in==4'd3 | in==4'd7 | in==4'd13)?1:0;
+assign out[6] = (in==4'd0 | in==4'd1 | in==4'd7 | in==4'd12)?1:0;
+endmodule
+
+module proc(DIN,Resetn,,Clock,R0,R1);
+input[7:0]DIN;
+input Resetn,Clock;
+output reg [7:0]R0,R1;
+reg [1:8] IR;
+wire [1:0] I;
+reg [7:0] RX,RY = 8'd0;
+reg IRin;
+assign R0 = (Tstep_Q)
+////////////....declare variables
+
+always @(posedge Clock) //RX
+begin
+    case(Tstep_Q)
+        2'b01 :
+        begin
+            case(I)
+                2'b00 : RX <= Yreg;
+                2'b01 : RX <= DIN;
+                default : RX <= RX;
+            endcase
+        end
+        2'b11 :
+        begin
+            case(I)
+                2'b10 : RX <= G;
+                2'b11 : RX <= G;
+                default : RX <= RX;
+            endcase
+        end
+        default : RX <= RX;
+    endcase
+end
+always @(posedge Clock) //RY
+begin
+    RY <= Yreg;
+end
+always @(posedge Clock) //A
+begin
+    case(Tstep_Q)
+        2'b01 :
+        begin
+            case(I)
+                2'b10 : A <= Xreg;
+                2'b11 : A <= Xreg;
+                default : A <= A;
+            endcase
+        end
+        default : RX <= RX;
+    endcase
+end
+always @(posedge Clock) //G
+begin
+    case(Tstep_Q)
+        2'b10 :
+        begin
+            case(I)
+                2'b10 : G <= A + RY;
+                2'b11 : G <= A - RY;
+                default : G <= G;
+            endcase
+        end
+        default : G <= G;
+    endcase
+end
+wire clear = Resetn;
+always @(posedge Clock) 
+begin
+    if(IRin)
+        IR <= DIN;
+    else
+        IR <= IR;
+end
+upcount Tstep(Clear,Clock,Tstep_Q);
+assign I=IR[1:2];
+dec3to8 decX(IR[3:5],1'b1,Xreg);
+dec3to8 decY(IR[6:8],1'b1,Yreg);
+
+always @(posedge Clock) //RX
+begin
+    case(Tstep_Q)
+        2'b01 :
+        begin
+            case(I)
+                2'b00 : R0 <= Yreg;
+                2'b01 : R0 <= DIN;
+                default : R0 <= R0;
+            endcase
+        end
+        2'b11 :
+        begin
+            case(I)
+                2'b10 : R0 <= G;
+                2'b11 : R0 <= G;
+                default : R0 <= R0;
+            endcase
+        end
+        default : R0 <= R0;
+    endcase
+end
+always @(posedge Clock) //RY
+begin
+    R1 <= Yreg;
+end
+always@(Tstep_Q,I,Xreg,Yreg)
+begin
+ //specify initial values
+  case(Tstep_Q)
+   2'b00:
+   begin
+    IRin=1'b1;
+   end
+   2'b01:    
+   begin   
+     case(I)
+     2'b00 : 
+     begin
+        
+     end
+     endcase
+   end
+   2'b10:  
+   begin      
+     case(I)
+     ////////////
+     endcase
+   end
+   2'b11: 
+   begin       
+     case(I)
+     ////////////
+     endcase
+   end
+  endcase
+end
+//regn reg_0(BusWires,Rin[0],Clock,R0);
+
+endmodule
+
+module upcount(clear,clk,Q);
+    input clear,clk;
+    output reg [1:0]Q;
+    always@(posedge clk)
+    begin
+        if(clear)
+            Q<=2'b00;
+        else
+            Q<=Q+2'b01;
+    end
+endmodule
+
+module  dec3to8(W,En,Y);
+    input [2:0]W;
+    input En;
+    output reg [0:7]Y;
+    always @(W or En) 
+    begin
+        if(En)
+        begin
+            case(W)
+                3'd0 : Y = 8'b10000000;
+                3'd1 : Y = 8'b01000000;
+                3'd2 : Y = 8'b00100000;
+                3'd3 : Y = 8'b00010000;
+                3'd4 : Y = 8'b00001000;
+                3'd5 : Y = 8'b00000100;
+                3'd6 : Y = 8'b00000010;
+                3'd7 : Y = 8'b00000001;
+                default : Y = 8'd0;
+            endcase
+        end
+        else
+            Y = 8'd0;
+    end
+endmodule
+/*
+module regn(R,Rin,clk,Q);
+    parameter n = 8;
+    input [n-1:0] R;
+    input Rin,clk;
+    output reg[n-1:0] Q;
+    always @(posedge clk) 
+    begin
+        if(Rin)
+            Q <= R;
+        else
+            Q <= Q;    
+    end
+endmodule*/

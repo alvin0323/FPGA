@@ -1,0 +1,14 @@
+module exercise7(in,out);
+input in;
+output[2:0] out;
+wire [7:0]IR;
+reg [7:0]R[7:0];
+reg [7:0] A = 8'd5;
+assign IR = 8'b10110010;
+always@(*)
+begin
+	R[IR[7:6]]=A;
+end
+
+
+endmodule

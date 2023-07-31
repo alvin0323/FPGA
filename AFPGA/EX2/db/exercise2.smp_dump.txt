@@ -1,0 +1,6 @@
+
+State Machine - |exercise2|current
+Name current.IDLE current.S1 current.S0 
+current.S1 0 0 0 
+current.S0 0 1 1 
+current.IDLE 1 1 0 

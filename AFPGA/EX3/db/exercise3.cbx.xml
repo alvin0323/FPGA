@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="exercise3">
+		<CBX_INST_ENTRY INSTANCE_NAME="|exercise3|lpm_add16:comb_315|lpm_add_sub:lpm_add_sub_component" CBX_FILE_NAME="add_sub_qif.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|exercise3|lpm_mult16:comb_313|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_nbo.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|exercise3|lpm_mult16:comb_314|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_nbo.v"/>
+	</PROJECT>
+</LOG_ROOT>

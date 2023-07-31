@@ -1,0 +1,133 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'CLOCK50'
+Slack : -2.432
+TNS   : -60.794
+
+Type  : Slow 1100mV 85C Model Setup 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -2.207
+TNS   : -36.016
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK50'
+Slack : -1.842
+TNS   : -1.842
+
+Type  : Slow 1100mV 85C Model Hold 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.610
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.706
+TNS   : -14.089
+
+Type  : Slow 1100mV 85C Model Removal 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.523
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.394
+TNS   : -14.058
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.394
+TNS   : -12.943
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK50'
+Slack : -2.568
+TNS   : -60.923
+
+Type  : Slow 1100mV 0C Model Setup 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -2.217
+TNS   : -35.538
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK50'
+Slack : -1.664
+TNS   : -1.664
+
+Type  : Slow 1100mV 0C Model Hold 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.581
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.637
+TNS   : -12.719
+
+Type  : Slow 1100mV 0C Model Removal 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.518
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.402
+TNS   : -15.706
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.394
+TNS   : -13.192
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK50'
+Slack : -1.035
+TNS   : -24.700
+
+Type  : Fast 1100mV 85C Model Setup 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.975
+TNS   : -14.003
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK50'
+Slack : -0.944
+TNS   : -0.944
+
+Type  : Fast 1100mV 85C Model Hold 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.284
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.154
+TNS   : -2.205
+
+Type  : Fast 1100mV 85C Model Removal 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.248
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.444
+TNS   : -2.404
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.052
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK50'
+Slack : -0.941
+TNS   : -21.699
+
+Type  : Fast 1100mV 0C Model Setup 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.871
+TNS   : -12.074
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK50'
+Slack : -0.866
+TNS   : -0.866
+
+Type  : Fast 1100mV 0C Model Hold 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.249
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : -0.096
+TNS   : -0.984
+
+Type  : Fast 1100mV 0C Model Removal 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.223
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.457
+TNS   : -2.450
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'FrequencyDivider50MHz:comb_9|clk_div'
+Slack : 0.064
+TNS   : 0.000
+
+------------------------------------------------------------

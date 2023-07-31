@@ -1,0 +1,93 @@
+//synopsys translate_off
+`timescale 1ps/1ps
+//synopsys translate_on
+module exercise3(KEY,SW,LEDR,HEX0,HEX1,HEX2,HEX3);
+input [3:0]KEY;
+input [9:0]SW;
+output [9:0]LEDR;
+output [6:0]HEX0,HEX1,HEX2,HEX3;
+reg [15:0]A = 16'b1111111111111111;
+reg [15:0]B = 16'b1111101111001110;
+wire [15:0]C;
+wire [3:0]D,E,F,G;
+lpm_add16(A,B,LEDR[9],C);
+assign D = C/1000;
+assign E = C/100 - D*10;
+assign F = C/10 - E*10 - D*100;
+assign G = C%10;
+seven(D,HEX3);
+seven(E,HEX2);
+seven(F,HEX1);
+seven(G,HEX0);
+
+endmodule
+
+module seven(in,out);
+input [3:0]in;
+output [6:0]out;
+assign out[0] = (in==4'd1 | in==4'd4)?1:0;
+assign out[1] = (in==4'd5 | in==4'd6)?1:0;
+assign out[2] = (in==4'd2)?1:0;
+assign out[3] = (in==4'd1 | in==4'd4 | in==4'd7 | in==4'd9)?1:0;
+assign out[4] = (in==4'd0 | in==4'd2 | in==4'd6 | in==4'd8)?0:1;
+assign out[5] = (in==4'd1 | in==4'd2 | in==4'd3 | in==4'd7)?1:0;
+assign out[6] = (in==4'd0 | in==4'd1 | in==4'd7)?1:0;
+endmodule
+
+module lpm_add16(dataa,datab,overflow,result);
+input [15:0]dataa;
+input [15:0]datab;
+output overflow;
+output [15:0]result;
+
+wire sub_wire0;
+wire [15:0]sub_wire_1;
+assign overflow = sub_wire0;
+assign result = sub_wire1;
+lpm_add_sub lpm_add_sub_component(
+.dataa(dataa),
+.datab(datab),
+.overflow(sub_wire0),
+.result(sub_wire1)
+//synopsys translate_off
+,
+.aclr(),
+.add_sub(),
+.cin(),
+.clken(),
+.clock(),
+.cout(),
+//synopsys translate_on
+);
+defparam
+	lpm_add_sub_component.lpm_direction = "ADD",
+	lpm_add_sub_component.lpm_hint = "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=NO",
+	lpm_add_sub_component.lpm_type = "LPM_ADD_SUB",
+	lpm_add_sub_component.lpm_width = 16;
+endmodule
+
+module lpm_mult16(dataa,datab,result);
+input [7:0]dataa;
+input [7:0]datab;
+output [15:0]result;
+
+wire [15:0]sub_wire0;
+assign result = sub_wire0;
+lpm_mult lpm_mult_component(
+.dataa(dataa),
+.datab(datab),
+.result(sub_wire0),
+.sum(1'b0),
+.clock(1'b0),
+.clken(1'b1),
+.aclr(1'b0)
+);
+defparam
+	lpm_mult_component.lpm_hint = "MAXIMIZE_SPEED=5",
+	lpm_mult_component.lpm_representation = "UNSIGNED",
+	lpm_mult_component.type = "LPM_MULT";
+	lpm_mult_component.lpm_widtha = 8;
+	lpm_mult_component.lpm_widthb = 8;
+	lpm_mult_component.lpm_widthp = 16;
+	lpm_mult_component.lpm_widths = 1;
+endmodule

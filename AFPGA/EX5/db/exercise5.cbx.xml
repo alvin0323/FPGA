@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="exercise5">
+		<CBX_INST_ENTRY INSTANCE_NAME="|exercise5|ramlpm:comb_4|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_mit1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
